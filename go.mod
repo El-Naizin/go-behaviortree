@@ -1,4 +1,4 @@
-module github.com/joeycumines/go-behaviortree
+module github.com/El-Naizin/go-behaviortree
 
 go 1.13
 
