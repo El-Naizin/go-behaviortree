@@ -19,6 +19,7 @@ package behaviortree
 import (
 	"context"
 	"errors"
+	"fmt"
 	"sync"
 	"time"
 )
@@ -126,15 +127,19 @@ func NewTickerStopOnFailure(ctx context.Context, duration time.Duration, node No
 
 func (t *tickerCore) run() {
 	var err error
+	fmt.Println("WOW THIS WAS MODIFIED")
 TickLoop:
 	for err == nil {
 		select {
 		case <-t.ctx.Done():
 			err = t.ctx.Err()
+			fmt.Println("WOW THIS WAS MODIFIED, and go ticker is done.")
 			break TickLoop
 		case <-t.stop:
+			fmt.Println("WOW THIS WAS MODIFIED, and go ticker stopped.")
 			break TickLoop
 		case <-t.ticker.C:
+			fmt.Println("WOW THIS WAS MODIFIED, and go ticker ticked.")
 			_, err = t.node.Tick()
 		}
 	}
